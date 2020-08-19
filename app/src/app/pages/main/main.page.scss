@@ -29,6 +29,7 @@
 
             &--selected {
                 color: var(--bird-primary);
+                transition: fill .2s linear;
             }
 
             ion-icon {

@@ -3,13 +3,14 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { FooterState } from 'src/app/models/enums/footer-state';
+import { Router } from '@angular/router';
 
 //#endregion 
 
 // a classe que representa o serviço que lida com os estilos e estados do footer do aplicativo 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FooterService {
 
@@ -17,11 +18,11 @@ export class FooterService {
 
   //Constructor padrao
 
-  constructor(
-    private readonly router: Router,
-  ) { 
-    this.router.events.subscribe( next: () => {
-      const currentUrl = this.router.url;
+constructor( 
+  private readonly router: Router,
+ ) { 
+   this.router.events.subscribe( () =>  {
+    const currentUrl = this.router.url;
 
       if(currentUrl.startsWith('/main/categories'))
         return void this.selectedFooterSubject.next(FooterState.CATEGORIES);
@@ -31,9 +32,8 @@ export class FooterService {
 
       if(currentUrl.startsWith('/main/all-comments'))
         return void this.selectedFooterSubject.next(FooterState.ALL_COMMENTS);
-
-    });
-  }
+   });
+}  
 
   //#endregion
 
@@ -41,7 +41,7 @@ export class FooterService {
 
   // Evento lancado para dizer qual menu do footer realmente esta selecionado
 
-  private readonly selectedFooterSubject: BehaviorSubject <FooterState> = new BehaviorSubject<FooterState>(FooterState.CATEGORIES);
+private readonly selectedFooterSubject: BehaviorSubject <FooterState> = new BehaviorSubject<FooterState>(FooterState.CATEGORIES);
 
   //#endregion
 
