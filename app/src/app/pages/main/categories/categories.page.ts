@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-categories',
+  selector: 'bird-categories',
   templateUrl: './categories.page.html',
   styleUrls: ['./categories.page.scss'],
 })
